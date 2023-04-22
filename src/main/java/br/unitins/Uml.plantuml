@@ -1,0 +1,104 @@
+@startuml
+
+    class CriadorDeConteudo {
+        - id: Long 
+        - nome: String 
+        - idade: String 
+        - cpf: String 
+        - email: String 
+    }
+    class Usuario {
+        - id: Long 
+        - nome: String 
+        - idade: int
+        - email: String 
+    }
+    class Pagamento {
+        - valor: Float 
+        - dataPagamento: Float 
+    }
+    class PagamentoCartao {
+        - valor: Float 
+    }
+    class PagamentoPix {
+        - valor: Float
+    }
+    class RegistroPagamento{
+        - pago: Boolean
+    }
+    class Pix { 
+        - nome: String 
+        - chave: String
+    }
+    enum TipoChave {
+        - cpf: String 
+        - cnpj: String 
+        - email: String 
+        - chavAleatoria: String 
+    }
+    class Cartao {
+        - nomeTitular: String 
+        - codSeguranca: Integer 
+        - dataValidade: LocalDate
+        - numeroCartao: String 
+    }
+    class TipoPagamento {
+        - credito: Integer 
+        - debito: Integer 
+    }
+    enum TipoConteudo {
+        - 18: Integer
+        - CASUAL: Integer  
+    }
+    class Plano {
+        - nome: String 
+        - preco: Float 
+        - beneficios: String 
+    }
+    class Assinatura {
+        - dataInicio: DateTime
+        - dataFinal: DateTime 
+        - status: Boolean 
+    }
+    class Endereco { 
+        - id: Long 
+        - lagradouro: String 
+        - bairro: String 
+        - numero: String 
+        - complemento: String 
+        - cep: String 
+    }
+    class Municipio {
+        - id: Integer 
+        - nome: String 
+    }
+    class Estado {
+        - id: Integer 
+        - nome: String 
+        - sigla: String 
+    }
+    class Telefone {
+        - id: Long 
+        - codArea: String
+        - numero: String 
+    }
+
+Usuario "1" --> "*" Endereco
+Usuario "1" --> "*" Telefone
+Estado --|> Endereco 
+Municipo --|> Endereco 
+Usuario "1" --> "*" Pagamento
+CriadorDeConteudo "1" --> "*" Pagamento
+Pix "1" --> "1" Pagamento
+TipoChave "*" *--> "*" Pix 
+Cartao "1" --> "*" Pagamento 
+CriadorDeConteudo "1" --> "*" TipoConteudo
+Usuario "1" --> "*" Assinatura
+Plano "1" --> "*" Assinatura 
+Assinatura "1" --> "1" Usuario 
+Pagamento "1" --> "1" RegistroPagamento
+TipoPagamento "1" *--> "*" Pagamento 
+PagamentoCartao --|> Pagamento 
+PagamentoPix --|> Pagamento 
+
+@enduml
