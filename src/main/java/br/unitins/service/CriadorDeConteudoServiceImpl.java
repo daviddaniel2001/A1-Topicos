@@ -15,13 +15,12 @@ import javax.ws.rs.NotFoundException;
 import br.unitins.dto.CriadorDeConteudoDTO;
 import br.unitins.dto.CriadorDeConteudoResponseDTO;
 import br.unitins.model.CriadorDeConteudo;
-<<<<<<< HEAD
 import br.unitins.model.Endereco;
 import br.unitins.repository.CriadorDeConteudoRepository;
 
 
 @ApplicationScoped
-public class CriadorDeConteudoServiceimpl implements CriadorDeConteudoService{
+public class CriadorDeConteudoServiceImpl implements CriadorDeConteudoService{
 
     @Inject 
     EnderecoService enderecoService;
@@ -46,10 +45,9 @@ public class CriadorDeConteudoServiceimpl implements CriadorDeConteudoService{
          return new CriadorDeConteudoResponseDTO(criadorDeConteudo);
     }
  
- 
     @Override
     @Transactional
-    public CriadorDeConteudoResponseDTO create(CriadorDeConteudoDTO criadorDeConteudoDTO) {
+    public CriadorDeConteudoResponseDTO create(CriadorDeConteudoDTO criadorDeConteudoDTO) throws ConstraintViolationException  {
         validar(criadorDeConteudoDTO);
  
         CriadorDeConteudo entity = new CriadorDeConteudo();
@@ -69,7 +67,7 @@ public class CriadorDeConteudoServiceimpl implements CriadorDeConteudoService{
  
     @Override
     @Transactional
-    public CriadorDeConteudoResponseDTO update(Long id, CriadorDeConteudoDTO criadorDeConteudoDTO) {
+    public CriadorDeConteudoResponseDTO update(Long id, CriadorDeConteudoDTO criadorDeConteudoDTO) throws ConstraintViolationException{
         validar(criadorDeConteudoDTO);
  
         CriadorDeConteudo entity = new CriadorDeConteudo();
@@ -98,12 +96,12 @@ public class CriadorDeConteudoServiceimpl implements CriadorDeConteudoService{
  
     @Override
     @Transactional
-    public void delete(Long id) {
+    public void delete(Long id) throws IllegalArgumentException, NotFoundException {
         criadorDeConteudoRepository.deleteById(id);
     }
  
     @Override
-    public List<CriadorDeConteudoResponseDTO> findByNome(String nome) {
+    public List<CriadorDeConteudoResponseDTO> findByNome(String nome) throws NullPointerException {
         List<CriadorDeConteudo> list = criadorDeConteudoRepository.findByNome(nome);
         return list.stream().map(CriadorDeConteudoResponseDTO::new).collect(Collectors.toList()); 
     }
@@ -112,87 +110,5 @@ public class CriadorDeConteudoServiceimpl implements CriadorDeConteudoService{
     public long count() {
         return criadorDeConteudoRepository.count();
     }
-=======
-import br.unitins.repository.CriadorDeConteudoRepository;
-import br.unitins.repository.PlataformaRepository;
 
-@ApplicationScoped
-public class CriadorDeConteudoServiceImpl implements CriadorDeConteudoService {
-
-    @Inject
-    CriadorDeConteudoRepository criadordeconteudorepository;
-
-    @Inject
-    PlataformaRepository plataformarepository;
-
-    @Inject
-    Validator validator;
-
-    @Override
-    public List<CriadorDeConteudoResponseDTO> getAll() {
-        List<CriadorDeConteudo> list = criadordeconteudorepository.listAll();
-        return list
-                .stream()
-                .map(CriadorDeConteudoResponseDTO::new)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    @Transactional
-    public CriadorDeConteudoResponseDTO findById(Long id) {
-        CriadorDeConteudo criadordeconteudo = criadordeconteudorepository.findById(id);
-        if (criadordeconteudo == null)
-            throw new NotFoundException("Criador de conteudo não encontrado!");
-        return new CriadorDeConteudoResponseDTO(criadordeconteudo);
-    }
-
-    @Override
-    @Transactional
-    public CriadorDeConteudoResponseDTO create(CriadorDeConteudoDTO criadordto) {
-        Set<ConstraintViolation<CriadorDeConteudoRepository>> violations = validator
-                .validate(criadordeconteudorepository);
-        if (!violations.isEmpty())
-            throw new ConstraintViolationException(violations);
-
-        CriadorDeConteudo entity = new CriadorDeConteudo();
-        entity.setNome(criadordto.getNome());
-        entity.setIdade(criadordto.getIdade());
-        criadordeconteudorepository.persist(entity);
-
-        return new CriadorDeConteudoResponseDTO(entity);
-
-    }
-
-    @Override
-    @Transactional
-    public CriadorDeConteudoResponseDTO update(Long id, CriadorDeConteudoDTO criadordto) {
-        CriadorDeConteudo entity = criadordeconteudorepository.findById(id);
-
-        entity.setNome(criadordto.getNome());
-        entity.setIdade(criadordto.getIdade());
-
-        return new CriadorDeConteudoResponseDTO(entity);
-    }
-
-    @Override
-    @Transactional
-    public void delete(Long id) {
-        criadordeconteudorepository.deleteById(id);
-    }
-
-    @Override
-    public List<CriadorDeConteudoResponseDTO> findByNome(String nome) {
-        List<CriadorDeConteudo> list = criadordeconteudorepository.findByNomeList(nome);
-        return list
-                   .stream()
-                   .map(CriadorDeConteudoResponseDTO::new)
-                   .collect(Collectors.toList());
-    }
-
-    @Override
-    public long count() {
-        return criadordeconteudorepository.count();
-    }
-
->>>>>>> c997eaa80096eab5e3c4265a343ecf9ee1398862
 }

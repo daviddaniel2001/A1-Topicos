@@ -45,7 +45,7 @@ public class EstadoServiceImpl implements EstadoService {
     }
 
     @Override
-    public EstadoResponseDTO create(EstadoDTO estadoDTO) {
+    public EstadoResponseDTO create(EstadoDTO estadoDTO) throws ConstraintViolationException  {
         validar(estadoDTO);
 
         Estado entity = new Estado();
@@ -57,7 +57,7 @@ public class EstadoServiceImpl implements EstadoService {
     }
 
     @Override
-    public EstadoResponseDTO update(Long id, EstadoDTO estadoDTO) {
+    public EstadoResponseDTO update(Long id, EstadoDTO estadoDTO) throws ConstraintViolationException  {
         validar(estadoDTO);
 
         Estado entity = new Estado();
@@ -75,12 +75,12 @@ public class EstadoServiceImpl implements EstadoService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) throws IllegalArgumentException, NotFoundException {
         estadoRepository.deleteById(id);
     }
 
     @Override
-    public List<EstadoResponseDTO> findByNome(String nome) {
+    public List<EstadoResponseDTO> findByNome(String nome) throws NullPointerException {
         List<Estado> list = estadoRepository.findByNome(nome);
         return list.stream().map(EstadoResponseDTO::new).collect(Collectors.toList()); 
     }

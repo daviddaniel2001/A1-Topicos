@@ -42,7 +42,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public UsuarioResponseDTO create(UsuarioDTO usuarioDTO) {
+    public UsuarioResponseDTO create(UsuarioDTO usuarioDTO) throws ConstraintViolationException {
         validar(usuarioDTO);
 
         Usuario entity = new Usuario();
@@ -58,7 +58,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public UsuarioResponseDTO update(Long id, UsuarioDTO usuarioDTO) {
+    public UsuarioResponseDTO update(Long id, UsuarioDTO usuarioDTO) throws ConstraintViolationException {
         validar(usuarioDTO);
 
         Usuario entity = new Usuario();
@@ -77,12 +77,12 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) throws IllegalArgumentException, NotFoundException {
         usuarioRepository.deleteById(id);
     }
 
     @Override
-    public List<UsuarioResponseDTO> findByNome(String nome) {
+    public List<UsuarioResponseDTO> findByNome(String nome) throws NullPointerException {
         List<Usuario> list = usuarioRepository.findByUsuario(nome);
         return list.stream().map(UsuarioResponseDTO::new).collect(Collectors.toList()); 
     }

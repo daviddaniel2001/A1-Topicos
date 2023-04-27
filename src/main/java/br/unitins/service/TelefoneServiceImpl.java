@@ -55,7 +55,7 @@ public class TelefoneServiceImpl implements TelefoneService {
 
     @Override
     @Transactional
-    public TelefoneResponseDTO update(Long id, TelefoneDTO telefoneDTO) {
+    public TelefoneResponseDTO update(Long id, TelefoneDTO telefoneDTO) throws ConstraintViolationException {
         validar(telefoneDTO);
 
         Telefone entity = new Telefone();
@@ -74,12 +74,12 @@ public class TelefoneServiceImpl implements TelefoneService {
 
     @Override
     @Transactional
-    public void delete(Long id) {
+    public void delete(Long id) throws IllegalArgumentException, NotFoundException {
         telefoneRepository.deleteById(id);
     }
 
     @Override
-    public List<TelefoneResponseDTO> findByNumero(String numero) {
+    public List<TelefoneResponseDTO> findByNumero(String numero) throws NullPointerException {
         List<Telefone> list = telefoneRepository.findByNumero(numero);
         return list.stream().map(TelefoneResponseDTO::new).collect(Collectors.toList()); 
     }

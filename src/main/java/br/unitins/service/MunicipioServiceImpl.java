@@ -48,7 +48,7 @@ public class MunicipioServiceImpl implements MunicipioService {
 
     @Override
     @Transactional
-    public MunicipioResponseDTO create(MunicipioDTO municipioDTO) throws ConstraintDeclarationException {
+    public MunicipioResponseDTO create(MunicipioDTO municipioDTO) throws ConstraintViolationException {
         validar(municipioDTO);
 
         Municipio entity = new Municipio();
@@ -61,7 +61,7 @@ public class MunicipioServiceImpl implements MunicipioService {
 
     @Override
     @Transactional
-    public MunicipioResponseDTO update(Long id, MunicipioDTO municipioDTO) throws ConstraintDeclarationException{
+    public MunicipioResponseDTO update(Long id, MunicipioDTO municipioDTO) throws ConstraintViolationException{
        validar(municipioDTO);
 
        Municipio entity = new Municipio();
@@ -80,13 +80,13 @@ public class MunicipioServiceImpl implements MunicipioService {
 
     @Override
     @Transactional
-    public void delete(Long id) {
+    public void delete(Long id) throws IllegalArgumentException, NotFoundException {
        municipioRepository.deleteById(id);
         
     }
 
     @Override
-    public List<MunicipioResponseDTO> findByNome(String nome) {
+    public List<MunicipioResponseDTO> findByNome(String nome) throws NullPointerException {
        List<Municipio> list = municipioRepository.findByNome(nome);
        return list.stream().map(MunicipioResponseDTO::new).collect(Collectors.toList()); 
     }

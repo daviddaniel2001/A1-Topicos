@@ -43,7 +43,7 @@ public class EnderecoServiceImpl implements EnderecoService{
 
 
    @Override
-   public EnderecoResponseDTO create(EnderecoDTO enderecoDTO) {
+   public EnderecoResponseDTO create(EnderecoDTO enderecoDTO) throws ConstraintViolationException {
        validar(enderecoDTO);
 
        Endereco entity = new Endereco();
@@ -62,7 +62,7 @@ public class EnderecoServiceImpl implements EnderecoService{
 
    @Override
    @Transactional
-   public EnderecoResponseDTO update(Long id, EnderecoDTO enderecoDTO) {
+   public EnderecoResponseDTO update(Long id, EnderecoDTO enderecoDTO) throws ConstraintViolationException {
        validar(enderecoDTO);
 
        Endereco entity = new Endereco();
@@ -82,12 +82,12 @@ public class EnderecoServiceImpl implements EnderecoService{
 
    @Override
    @Transactional
-   public void delete(Long id) {
+   public void delete(Long id) throws IllegalArgumentException, NotFoundException {
        enderecoRepository.deleteById(id);
    }
 
    @Override
-   public List<EnderecoResponseDTO> findByNome(String nome) {
+   public List<EnderecoResponseDTO> findByNome(String nome) throws NullPointerException {
        List<Endereco> list = enderecoRepository.findByNome(nome);
        return list.stream().map(EnderecoResponseDTO::new).collect(Collectors.toList()); 
    }
