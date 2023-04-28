@@ -16,7 +16,6 @@ public record CriadorDeConteudoDTO(
         String email,
         
         EnderecoDTO enderecoDTO
-
 ){
 
 }

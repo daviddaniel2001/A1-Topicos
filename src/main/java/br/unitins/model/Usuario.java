@@ -1,5 +1,6 @@
 package br.unitins.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,11 +19,11 @@ public class Usuario {
     private Integer idade;
     private String email;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
-    @OneToOne
+    @OneToOne  (cascade = CascadeType.ALL)
     @JoinColumn(name = "id_telefone")
     private Telefone telefone;
 

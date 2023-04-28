@@ -1,17 +1,15 @@
 package br.unitins.dto;
 
 import javax.validation.constraints.NotBlank;
-
-import br.unitins.model.Estado;
+import javax.validation.constraints.NotNull;
 
 public record MunicipioDTO(
-        Long id,
 
         @NotBlank(message = "O nome do municipio deve ser informado.") 
         String nome, 
         
-        @NotBlank(message = "O nome do estado deve ser informado.")
-        Estado estado
+        @NotNull(message = "O nome do estado deve ser informado.")
+        Long idEstado
     
 ){
 

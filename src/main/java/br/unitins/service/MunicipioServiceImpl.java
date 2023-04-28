@@ -15,6 +15,7 @@ import javax.ws.rs.NotFoundException;
 
 import br.unitins.dto.MunicipioDTO;
 import br.unitins.dto.MunicipioResponseDTO;
+import br.unitins.model.Estado;
 import br.unitins.model.Municipio;
 import br.unitins.repository.EstadoRepository;
 import br.unitins.repository.MunicipioRepository;
@@ -53,7 +54,8 @@ public class MunicipioServiceImpl implements MunicipioService {
 
         Municipio entity = new Municipio();
         entity.setNome(municipioDTO.nome());
-        entity.setEstado(municipioDTO.estado());
+        entity.setEstado(new Estado());
+        entity.getEstado().setId(municipioDTO.idEstado());
         municipioRepository.persist(entity);
 
         return new MunicipioResponseDTO(entity);
@@ -67,7 +69,8 @@ public class MunicipioServiceImpl implements MunicipioService {
        Municipio entity = new Municipio();
 
        entity.setNome(municipioDTO.nome());
-       entity.setEstado(municipioDTO.estado());
+       entity.setEstado(new Estado());
+       entity.getEstado().setId(municipioDTO.idEstado());
         
        return new MunicipioResponseDTO(entity);
     }

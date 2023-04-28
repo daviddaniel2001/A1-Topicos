@@ -1,5 +1,6 @@
 package br.unitins.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,7 @@ public class CriadorDeConteudo {
     private String cpf;
     private String email;
     
-    @OneToOne
+    @OneToOne  (cascade = CascadeType.ALL)
     private Endereco endereco;
 
     public Endereco getEndereco() {

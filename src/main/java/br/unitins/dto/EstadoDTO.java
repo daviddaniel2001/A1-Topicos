@@ -4,7 +4,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public record EstadoDTO(
-        Long id,
 
         @NotBlank(message = "O nome do Estado deve ser informado.")
         String nome, 
