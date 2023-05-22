@@ -2,7 +2,6 @@ package br.unitins.service;
 
 import java.util.List;
 
-import br.unitins.dto.UsuarioDTO;
 import br.unitins.dto.UsuarioResponseDTO;
 
 public interface UsuarioService {
@@ -11,9 +10,9 @@ public interface UsuarioService {
 
     UsuarioResponseDTO findById(Long id);
 
-    UsuarioResponseDTO create(UsuarioDTO usuarioDTO);
+    //UsuarioResponseDTO create(UsuarioDTO usuarioDTO);
 
-    UsuarioResponseDTO update(Long id, UsuarioDTO usuarioDTO);
+    //UsuarioResponseDTO update(Long id, UsuarioDTO usuarioDTO);
 
     void delete(Long id);
 

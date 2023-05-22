@@ -1,25 +1,37 @@
 package br.unitins.dto;
 
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import br.unitins.model.Endereco;
 import br.unitins.model.Sexo;
-import br.unitins.model.Telefone;
 import br.unitins.model.Usuario;
 
-public record UsuarioResponseDTO (
-    String nome,
-    Long id, 
-    Integer idade,
-    String email,
-    Endereco endereco, 
-    Telefone telefone,
-     
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    Sexo sexo 
-){ 
-    public UsuarioResponseDTO(Usuario us) {
-        this(us.getNome(), us.getId(), us.getIdade(), us.getEmail(), us.getEndereco(), us.getTelefone(), us.getSexo());
-    }
+
+public record UsuarioResponseDTO(
+   
+   Long id, 
+   String cpf, 
+   String nome, 
+   String email,
+   String login,
+   String nomeImagem,
+   
+   @JsonInclude(JsonInclude.Include.NON_NULL)
+   Sexo sexo 
+){
+
+   public static UsuarioResponseDTO valueOf(Usuario u){
+      if(u.getPessoaFisica() == null)
+         return new UsuarioResponseDTO(u.getId(), null, null, null, u.getLogin(), null, null);
+
+      return new UsuarioResponseDTO(u.getId(), 
+         u.getPessoaFisica().getCpf(), 
+         u.getPessoaFisica().getNome(),
+         u.getPessoaFisica().getEmail(),
+         u.getLogin(), 
+         u.getNomeImagem(),
+         u.getPessoaFisica().getSexo());   
+   }
+
+
 }
+

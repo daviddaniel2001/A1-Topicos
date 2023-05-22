@@ -10,7 +10,7 @@ import br.unitins.model.Usuario;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 @QuarkusTest
 public class UsuarioResourceTest {

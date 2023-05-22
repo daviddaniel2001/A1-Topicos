@@ -10,7 +10,7 @@ import br.unitins.model.Estado;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 @QuarkusTest
 public class EstadoResourceTest {
