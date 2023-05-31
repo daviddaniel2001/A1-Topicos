@@ -19,6 +19,15 @@ public class Usuario {
     private String login;
     private String senha;
     private String nomeImagem;
+    private Assinaturas assinaturas;
+
+    public Assinaturas getAssinaturas() {
+        return assinaturas;
+    }
+
+    public void setAssinaturas(Assinaturas assinaturas) {
+        this.assinaturas = assinaturas;
+    }
 
     @ElementCollection
     @CollectionTable(name = "perfis", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"))

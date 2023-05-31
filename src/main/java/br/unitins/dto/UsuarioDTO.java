@@ -1,4 +1,5 @@
 package br.unitins.dto;
+import br.unitins.model.Assinaturas;
 import br.unitins.model.Endereco;
 import br.unitins.model.Telefone;
 
@@ -27,7 +28,9 @@ public record UsuarioDTO(
         Telefone telefone,
 
         @NotNull(message = "O nome deve ser informado.") 
-        Integer sexo
+        Integer sexo,
+
+        Assinaturas assinaturas
 
 ) { 
 
