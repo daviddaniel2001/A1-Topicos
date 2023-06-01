@@ -2,14 +2,35 @@ package br.unitins.model;
 
 import java.time.LocalDateTime;
 
-public class Assinaturas {
+import jakarta.persistence.Entity;
+
+@Entity
+public class Assinaturas extends Pagamento {
 
     private LocalDateTime dataInicio;
     private LocalDateTime dataFinal;
     private Boolean status;
+    private Usuario nomeUuario;
+    private CriadorDeConteudo nomeCriadorDeConteudo;
 
     public LocalDateTime getDataInicio() {
         return dataInicio;
+    }
+
+    public Usuario getNomeUuario() {
+        return nomeUuario;
+    }
+
+    public void setNomeUuario(Usuario nomeUuario) {
+        this.nomeUuario = nomeUuario;
+    }
+
+    public CriadorDeConteudo getNomeCriadorDeConteudo() {
+        return nomeCriadorDeConteudo;
+    }
+
+    public void setNomeCriadorDeConteudo(CriadorDeConteudo nomeCriadorDeConteudo) {
+        this.nomeCriadorDeConteudo = nomeCriadorDeConteudo;
     }
 
     public void setDataInicio(LocalDateTime dataInicio) {
