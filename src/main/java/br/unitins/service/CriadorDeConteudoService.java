@@ -2,18 +2,23 @@ package br.unitins.service;
 
 import java.util.List;
 
-import br.unitins.dto.CriadorDeConteudoDTO;
 import br.unitins.dto.CriadorDeConteudoResponseDTO;
 
 public interface CriadorDeConteudoService {
         
     List<CriadorDeConteudoResponseDTO> getAll();
 
+    CriadorDeConteudoResponseDTO findByLoginAndSenha(String login, String senha);
+
     CriadorDeConteudoResponseDTO findById(Long id);
 
-    CriadorDeConteudoResponseDTO create(CriadorDeConteudoDTO criadorDeConteudoDTO);
+    CriadorDeConteudoResponseDTO findByLogin(String login);
 
-    CriadorDeConteudoResponseDTO update(Long id, CriadorDeConteudoDTO criadorDeConteudoDTO);
+    //CriadorDeConteudoResponseDTO create(CriadorDeConteudoDTO criadorDeConteudoDTO);
+
+    //CriadorDeConteudoResponseDTO update(Long id, CriadorDeConteudoDTO criadorDeConteudoDTO);
+
+    CriadorDeConteudoResponseDTO update(Long id, String nomeImagem);
 
     void delete(Long id);
 

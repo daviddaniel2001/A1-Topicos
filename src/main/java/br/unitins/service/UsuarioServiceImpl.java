@@ -77,9 +77,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public List<UsuarioResponseDTO> findByNome(String nome){
+    public List<UsuarioResponseDTO> findByNome(String nome) {
         List<Usuario> list = usuarioRepository.findByNome(nome);
-        return list.stream().map(UsuarioResponseDTO::new).collect(Collectors.toList()); 
+        return list.stream().map(u -> UsuarioResponseDTO.valueOf(u)).collect(Collectors.toList());
     }
 
     @Override
@@ -95,8 +95,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public UsuarioResponseDTO findByLogin(String login) {
         Usuario usuario = usuarioRepository.findByLogin(login);
-        if (usuario == null)
-            throw new NotFoundException("Usuário não encontrado.");
+        if(usuario == null)
+            throw new NotFoundException("Usuario não encotrado.");
         return UsuarioResponseDTO.valueOf(usuario);
     }
 
