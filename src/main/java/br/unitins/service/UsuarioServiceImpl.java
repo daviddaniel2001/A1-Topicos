@@ -24,15 +24,15 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public List<UsuarioResponseDTO> getAll() {
         List<Usuario> list = usuarioRepository.listAll();
-        return list.stream().map(UsuarioResponseDTO::new).collect(Collectors.toList());
+        return list.stream().map(u -> UsuarioResponseDTO.valueOf(u)).collect(Collectors.toList());
     }
 
     @Override
     public UsuarioResponseDTO findById(Long id) {
-        Usuario usuario = usuarioRepository.findById(id);
-        if(usuario == null)
-             throw new NotFoundException("Municipio não encontrado.");
-         return new UsuarioResponseDTO(usuario);
+        Usuario pessoaFisica = usuarioRepository.findById(id);
+        if(pessoaFisica == null)
+            throw new NotFoundException("Usuario não encontrado.");
+        return UsuarioResponseDTO.valueOf(pessoaFisica);
     }
 
     //@Override

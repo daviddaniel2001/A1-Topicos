@@ -3,7 +3,6 @@ package br.unitins.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import br.unitins.model.CriadorDeConteudo;
-import br.unitins.model.Endereco;
 import br.unitins.model.Sexo;
 
 public record CriadorDeConteudoResponseDTO(
@@ -21,7 +20,7 @@ public record CriadorDeConteudoResponseDTO(
 ){
     public static CriadorDeConteudoResponseDTO valueOf(CriadorDeConteudo cdc) {
         if (cdc.getPessoaFisica() == null)
-            return new CriadorDeConteudoResponseDTO(getId(), null, null, null, cdc.getLogin(), null);
+            return new CriadorDeConteudoResponseDTO(null, null, null, null, cdc.getLogin(), null, null);
             
         return new CriadorDeConteudoResponseDTO(cdc.getId(),
             cdc.getPessoaFisica().getCpf(),

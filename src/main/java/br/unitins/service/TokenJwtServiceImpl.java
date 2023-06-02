@@ -5,7 +5,7 @@ import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
 import br.unitins.model.Usuario;
-
+import io.smallrye.jwt.build.Jwt;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

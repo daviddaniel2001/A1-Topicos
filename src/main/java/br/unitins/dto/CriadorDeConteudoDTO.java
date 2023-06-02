@@ -1,4 +1,5 @@
 package br.unitins.dto;
+import br.unitins.model.Sexo;
 import jakarta.validation.constraints.NotBlank;
 
 public record CriadorDeConteudoDTO(
@@ -15,7 +16,9 @@ public record CriadorDeConteudoDTO(
         @NotBlank(message = "O email deve ser informado.")
         String email,
         
-        EnderecoDTO enderecoDTO
+        EnderecoDTO enderecoDTO, 
+
+        Sexo sexo
 ){
 
 }
